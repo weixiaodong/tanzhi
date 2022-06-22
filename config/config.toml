@@ -1,0 +1,25 @@
+env = "dev"
+
+
+[transport.http]
+addr = ":9000"
+read_timeout = 0.5
+read_header_timeout = 1
+write_timeout = 10
+idle_timeout = 30
+
+
+[[jobs]]
+name = "job-1"
+expr = "0 */1 * * * *"
+[jobs.command]
+type = "http"
+method = "GET"
+target = "http://baidu.com"
+
+[[jobs]]
+name = "job-2"
+expr = "0/15 * * * * *"
+[jobs.command]
+type = "shell"
+target = "echo 'hello, world'"
